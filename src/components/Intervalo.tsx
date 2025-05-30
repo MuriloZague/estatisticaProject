@@ -1,4 +1,5 @@
 interface IntervaloValor {
+  title: string;
   primeiro: string;
   segundo: string;
   terceiro: string;
@@ -8,48 +9,48 @@ interface IntervaloValor {
 
 export default function Intervalo(valores: IntervaloValor) {
   return (
-    <section className="flex flex-col gap-2 w-[50%] border-2 p-3 rounded-lg border-gray-300">
-      <h1>Calculadora de Intervalo de Confiança para uma Proporção</h1>
+    <section className="w-[80%] flex flex-col gap-2 p-3 rounded-lg card">
+      <h1 className="text-[1.3rem] font-medium">{valores.title}</h1>
       <hr />
       <div className="flex flex-col gap-2">
         <div className="flex justify-between">
-          <a>{valores.primeiro}</a>
+          <p>{valores.primeiro}</p>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-[0.3rem] w-1/2"
+            className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem]"
           />
         </div>
         <div className="flex justify-between">
-          <a>{valores.segundo}</a>
+          <span>{valores.segundo}</span>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-[0.3rem] w-1/2"
+            className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem]"
           />
         </div>
         <div className="flex justify-between">
-          <a>{valores.terceiro}</a>
+          <span>{valores.terceiro}</span>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-[0.3rem] w-1/2"
+            className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem]"
           />
         </div>
         <div className="flex justify-between">
-          <a>{valores.quarto}</a>
+          <span>{valores.quarto}</span>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-[0.3rem] w-1/2"
+            className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem]"
           />
         </div>
         <div className="flex justify-between">
-          <a>{valores.quinto}</a>
+          <span>{valores.quinto}</span>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-[0.3rem] w-1/2"
+            className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem]"
           />
         </div>
-        <div className="flex justify-between border border-gray-400 p-2 rounded-[0.3rem]">
-            <a>Intervalo de confiança</a>
-            <a>resultado1 &lt; π &lt; resultado2 </a>
+        <div className="flex justify-between bg-[#fdf2e5] p-3 rounded-[0.3rem]">
+          <span>Intervalo de confiança</span>
+          <span>resultado1 &lt; π &lt; resultado2 </span>
         </div>
       </div>
     </section>

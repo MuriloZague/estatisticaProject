@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+body {
+  background-color: #fef9f3; /* Bege claro */
+}
+
+.card {
+  background-color: #ffffff45;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+h1{
+    font-family: "Playfair Display";
+}

@@ -15,3 +15,8 @@ body {
 h1{
     font-family: "Playfair Display";
 }
+
+/*estilização customizada tailwind*/
+@theme {
+
+}

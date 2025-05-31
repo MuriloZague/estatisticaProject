@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  background-color: #fff2e1; /* Bege claro */
+  background-color: #faeee0; /* Bege claro */
 }
 
 .card {
@@ -16,7 +16,7 @@ h1{
     font-family: "Playfair Display";
 }
 
-/*estilização customizada tailwind*/
+/*estilização customizada para tailwind*/
 @theme {
 
 }

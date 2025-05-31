@@ -19,7 +19,7 @@ export default function Erro(valores: AmostraValor) {
  */
 
   return (
-    <section className="w-[80%] flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white">
+    <section className="w-[90%] flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white">
       <h1 className="text-[1.4rem] font-medium">{valores.title}</h1>
       <hr />
       <div className="flex flex-col gap-2 mt-2">

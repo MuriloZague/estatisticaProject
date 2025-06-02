@@ -10,7 +10,8 @@ export default function Home() {
 
   const [media2, setMedia2] = useState(Boolean)
   const [proporcao2, setProporcao2] = useState(Boolean)
-
+  // fazer os inputs serem apagados quando mudar o tipo de calculadora, criar uma função para o onchange, excluir vairaveis retidas
+  // (media1 media2 proporcao1 proporcao2)
   return (
     <section className="flex flex-row justify-around">
       <div className="flex flex-col items-center gap-3 w-[45%] mt-3">

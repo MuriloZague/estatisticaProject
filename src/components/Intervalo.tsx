@@ -31,7 +31,7 @@ export default function Intervalo(valores: IntervaloValor) {
 }
 
   const intervaloConfiancaMedia = (um: number, dois: number, tres: number) => {
-    if (isNaN(um) || isNaN(dois) || isNaN(tres)) { //algumas variavéis podem ser menores que 1. !! PERGUNTAR PARA A PROFESSORA SE PODEM SER MENORES OU IGUAIS A ZERO !!
+    if (isNaN(um) || isNaN(dois) || isNaN(tres) || dois <= 0){ //algumas variavéis podem ser menores que 1. !! PERGUNTAR PARA A PROFESSORA SE PODEM SER MENORES OU IGUAIS A ZERO !!
     alert('Preencha os campos corretamente!');
     return;
   }

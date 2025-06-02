@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 //ignorar nomes de variaveis, nao sou bom nisso
 interface IntervaloValor {
@@ -13,15 +13,27 @@ interface IntervaloValor {
 
 export default function Intervalo(valores: IntervaloValor) {
   //ignorar nomes de variaveis, nao sou bom nisso (2)
-  const [primeiroValor, setPrimeiroValor] = useState(0);
-  const [segundoValor, setSegundoValor] = useState(0);
-  const [terceiroValor, setTerceiroValor] = useState(0);
-  const [quartoValor, setQuartoValor] = useState(0);
+  const [primeiroValor, setPrimeiroValor] = useState("");
+  const [segundoValor, setSegundoValor] = useState("");
+  const [terceiroValor, setTerceiroValor] = useState("");
+  const [quartoValor, setQuartoValor] = useState("");
+
+  const setValores = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    setValor: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    const entrada = e.target.value.replace(',', '.');
+    setValor(entrada);
+  };
 
   const [resultadoProporcao, setResultadoProporcao] = useState(0)
   const [resultadoMedia, setResultadoMedia] = useState(0)
 
-  function intervaloConfiancaProporcao(um: number, dois: number, tres: number){
+  function intervaloConfiancaProporcao(umStr: string, doisStr: string, tresStr: string){
+    const um = parseFloat(umStr);
+    const dois = parseFloat(doisStr);
+    const tres = parseFloat(tresStr);
+    
     if (isNaN(um) || isNaN(dois) || isNaN(tres) || um <= 0 || um >= 1 || dois <= 0 || tres <= 0) { //tentar diminuir tamanho verificação
     alert('Preencha os campos corretamente!');
     return;
@@ -30,7 +42,11 @@ export default function Intervalo(valores: IntervaloValor) {
   setResultadoProporcao(Number(resultado));
 }
 
-  const intervaloConfiancaMedia = (um: number, dois: number, tres: number) => {
+  const intervaloConfiancaMedia = (umStr: string, doisStr: string, tresStr: string) => {
+    const um = parseFloat(umStr);
+    const dois = parseFloat(doisStr);
+    const tres = parseFloat(tresStr);
+
     if (isNaN(um) || isNaN(dois) || isNaN(tres) || dois <= 0){ //algumas variavéis podem ser menores que 1. !! PERGUNTAR PARA A PROFESSORA SE PODEM SER MENORES OU IGUAIS A ZERO !!
     alert('Preencha os campos corretamente!');
     return;
@@ -49,7 +65,7 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setPrimeiroValor(Number(e.target.value))}
+            onChange={(e) => setValores(e, setPrimeiroValor)}
           />
         </div>
         {valores.media ? 
@@ -58,13 +74,14 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setQuartoValor(Number(e.target.value))}
+            onChange={(e) => setValores(e, setQuartoValor)}
           />
         </div>
         :
         <div className="flex justify-between items-center">
           <span className="text-lg">{valores.segundo}</span>
-          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{primeiroValor == 0 ? null : (1 - primeiroValor).toFixed(2)}</span>
+          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{primeiroValor ? (1 - parseFloat(primeiroValor)) : null}
+</span>
         </div>
         }
         <div className="flex justify-between items-center">
@@ -72,7 +89,7 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setSegundoValor(Number(e.target.value))}
+            onChange={(e) => setValores(e, setSegundoValor)}
           />
         </div>
 
@@ -84,7 +101,7 @@ export default function Intervalo(valores: IntervaloValor) {
           {valores.media ?
           <select
               className="px-2 border-2 border-[#ddd] rounded-[0.3rem] h-[2.15rem]"
-              onChange={(e) => setTerceiroValor(Number(e.target.value))}
+              onChange={(e) => setValores(e, setTerceiroValor)}
             >
               <option value="">- Selecione -</option>
               <option value={1.645}>90% &gt; 0,10</option>
@@ -94,7 +111,7 @@ export default function Intervalo(valores: IntervaloValor) {
           :
           <select
               className="px-2 border-2 border-[#ddd] rounded-[0.3rem] h-[2.15rem]"
-              onChange={(e) => setTerceiroValor(Number(e.target.value))}
+              onChange={(e) => setValores(e, setTerceiroValor)}
             >
               <option value="">- Selecione -</option>
               <option value={1.645}>90%</option>
@@ -103,7 +120,7 @@ export default function Intervalo(valores: IntervaloValor) {
           </select>
           }
           </div>
-          <span className="w-1/4 text-right">{valores.media ? terceiroValor == 0 ? null : terceiroValor : terceiroValor == 0 ? null : terceiroValor}</span>
+          <span className="w-1/4 text-right">{valores.media ? parseFloat(terceiroValor) == 0 ? null : terceiroValor : parseFloat(terceiroValor) == 0 ? null : terceiroValor}</span>
         </div>
         <div className="flex justify-between items-center mb-3">
           <span className="text-lg">{valores.quinto}</span>
@@ -115,10 +132,10 @@ export default function Intervalo(valores: IntervaloValor) {
             {valores.media
               ? resultadoMedia === 0
                 ? 'x < π < y'
-                : `${(primeiroValor - resultadoMedia).toFixed(2)} < π < ${(primeiroValor + resultadoMedia).toFixed(2)}`
+                : `${(parseFloat(primeiroValor) - resultadoMedia).toFixed(2)} < π < ${(parseFloat(primeiroValor) + resultadoMedia).toFixed(2)}`
               : resultadoProporcao === 0
                 ? 'x < π < y'
-                : `${(primeiroValor - resultadoProporcao).toFixed(2)} < π < ${(primeiroValor + resultadoProporcao).toFixed(2)}`
+                : `${(parseFloat(primeiroValor) - resultadoProporcao).toFixed(2)} < π < ${(parseFloat(primeiroValor) + resultadoProporcao).toFixed(2)}`
             }
           </span>
         </div>

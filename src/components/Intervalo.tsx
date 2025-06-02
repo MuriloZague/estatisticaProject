@@ -80,8 +80,7 @@ export default function Intervalo(valores: IntervaloValor) {
         :
         <div className="flex justify-between items-center">
           <span className="text-lg">{valores.segundo}</span>
-          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{primeiroValor ? (1 - parseFloat(primeiroValor)) : null}
-</span>
+          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{primeiroValor ? (1 - parseFloat(primeiroValor)) : null}</span>
         </div>
         }
         <div className="flex justify-between items-center">

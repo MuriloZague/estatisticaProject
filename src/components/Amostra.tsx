@@ -56,6 +56,12 @@ export default function Erro(valores: AmostraValor) {
           <span className="text-lg">Tamanho da amostra (n)</span>
           <span className="text-lg">x ==&gt; y</span>
         </div>
+        <div>
+        <button
+            className="bg-[#fce5cb] p-3 px-8 rounded-[0.3rem] cursor-pointer hover:bg-[#ecd0af] transition-colors duration-200">
+            Calcular
+          </button>
+        </div>
       </div>
     </section>
   )

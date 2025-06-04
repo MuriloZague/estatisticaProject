@@ -1,7 +1,15 @@
-import { useState, type ChangeEvent } from "react";
+import { useState, type ChangeEvent, type SetStateAction, type Dispatch } from "react";
 
 //ignorar nomes de variaveis, nao sou bom nisso
-interface IntervaloValor {
+export interface IntervaloValor {
+  setPrimeiro: Dispatch<SetStateAction<string>>;
+  setSegundo: Dispatch<SetStateAction<string>>;
+  setTerceiro: Dispatch<SetStateAction<string>>;
+  setQuarto: Dispatch<SetStateAction<string>>;
+  primeiroValor: string;
+  segundoValor: string;
+  terceiroValor: string;
+  quartoValor: string;
   title: string;
   primeiro: string;
   segundo: string;
@@ -12,11 +20,7 @@ interface IntervaloValor {
 }
 
 export default function Intervalo(valores: IntervaloValor) {
-  //ignorar nomes de variaveis, nao sou bom nisso (2)
-  const [primeiroValor, setPrimeiroValor] = useState("");
-  const [segundoValor, setSegundoValor] = useState("");
-  const [terceiroValor, setTerceiroValor] = useState("");
-  const [quartoValor, setQuartoValor] = useState("");
+
 
   const setValores = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -65,7 +69,7 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setValores(e, setPrimeiroValor)}
+            onChange={(e) => setValores(e, valores.setPrimeiro)}
           />
         </div>
         {valores.media ? 
@@ -74,13 +78,13 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setValores(e, setQuartoValor)}
+            onChange={(e) => setValores(e, valores.setQuarto)}
           />
         </div>
         :
         <div className="flex justify-between items-center">
           <span className="text-lg">{valores.segundo}</span>
-          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{primeiroValor ? (1 - parseFloat(primeiroValor)) : null}</span>
+          <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{valores.primeiroValor ? (1 - parseFloat(valores.primeiroValor)) : null}</span>
         </div>
         }
         <div className="flex justify-between items-center">
@@ -88,7 +92,7 @@ export default function Intervalo(valores: IntervaloValor) {
           <input
             type="text"
             className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2"
-            onChange={(e) => setValores(e, setSegundoValor)}
+            onChange={(e) => setValores(e, valores.setSegundo)}
           />
         </div>
 
@@ -100,7 +104,7 @@ export default function Intervalo(valores: IntervaloValor) {
           {valores.media ?
           <select
               className="px-2 border-2 border-[#ddd] rounded-[0.3rem] h-[2.15rem]"
-              onChange={(e) => setValores(e, setTerceiroValor)}
+              onChange={(e) => setValores(e, valores.setTerceiro)}
             >
               <option value="">- Selecione -</option>
               <option value={1.645}>90% &gt; 0,10</option>
@@ -110,7 +114,7 @@ export default function Intervalo(valores: IntervaloValor) {
           :
           <select
               className="px-2 border-2 border-[#ddd] rounded-[0.3rem] h-[2.15rem]"
-              onChange={(e) => setValores(e, setTerceiroValor)}
+              onChange={(e) => setValores(e, valores.setTerceiro)}
             >
               <option value="">- Selecione -</option>
               <option value={1.645}>90%</option>
@@ -119,7 +123,7 @@ export default function Intervalo(valores: IntervaloValor) {
           </select>
           }
           </div>
-          <span className="w-1/4 text-right">{valores.media ? parseFloat(terceiroValor) == 0 ? null : terceiroValor : parseFloat(terceiroValor) == 0 ? null : terceiroValor}</span>
+          <span className="w-1/4 text-right">{valores.media ? parseFloat(valores.terceiroValor) == 0 ? null : valores.terceiroValor : parseFloat(valores.terceiroValor) == 0 ? null : valores.terceiroValor}</span>
         </div>
         <div className="flex justify-between items-center mb-3">
           <span className="text-lg">{valores.quinto}</span>
@@ -131,10 +135,10 @@ export default function Intervalo(valores: IntervaloValor) {
             {valores.media
               ? resultadoMedia === 0
                 ? 'x < π < y'
-                : `${(parseFloat(primeiroValor) - resultadoMedia).toFixed(2)} < π < ${(parseFloat(primeiroValor) + resultadoMedia).toFixed(2)}`
+                : `${(parseFloat(valores.primeiroValor) - resultadoMedia).toFixed(2)} < π < ${(parseFloat(valores.primeiroValor) + resultadoMedia).toFixed(2)}`
               : resultadoProporcao === 0
                 ? 'x < π < y'
-                : `${(parseFloat(primeiroValor) - resultadoProporcao).toFixed(2)} < π < ${(parseFloat(primeiroValor) + resultadoProporcao).toFixed(2)}`
+                : `${(parseFloat(valores.primeiroValor) - resultadoProporcao).toFixed(2)} < π < ${(parseFloat(valores.primeiroValor) + resultadoProporcao).toFixed(2)}`
             }
           </span>
         </div>
@@ -143,8 +147,8 @@ export default function Intervalo(valores: IntervaloValor) {
             className="bg-[#fce5cb] p-3 px-8 rounded-[0.3rem] cursor-pointer hover:bg-[#ecd0af] transition-colors duration-200"
             onClick={() =>
               valores.media
-                ? intervaloConfiancaMedia(quartoValor, segundoValor, terceiroValor)
-                : intervaloConfiancaProporcao(primeiroValor, segundoValor, terceiroValor)}>
+                ? intervaloConfiancaMedia(valores.quartoValor, valores.segundoValor, valores.terceiroValor)
+                : intervaloConfiancaProporcao(valores.primeiroValor, valores.segundoValor, valores.terceiroValor)}>
             Calcular
           </button>
         </div>

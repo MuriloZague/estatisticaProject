@@ -60,10 +60,10 @@ export default function Home() {
           <option value="proporcao">Proporção</option>
           <option value="media">Média</option>
         </select>
-        {media2 ?
-        <Amostra key="media2" title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" />
-        : proporcao2 ?
-        <Amostra key="proporcao2" title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" />
+        {proporcao2 ?
+        <Amostra key="media2" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" media={true}/>
+        : media2 ?
+        <Amostra key="proporcao2" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" media={false}/>
         : null}
         </div>
     </section>

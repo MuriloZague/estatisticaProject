@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Intervalo from "./Intervalo"
 import Amostra from "./Amostra"
@@ -53,12 +54,33 @@ export default function Home() {
           <option value="proporcao">Proporção</option>
           <option value="media">Média</option>
         </select>
-        {media1 ? 
-        <Intervalo key="media1" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Intervalo de Confiança para uma Média" primeiro="Média" segundo="Desvio Padrão" terceiro="Tamanho da Amostra (n)" quarto="alfa (α)" quinto="Erro de Média (Em)" media={true}/>
-        : proporcao1 ?
-        <Intervalo key="proporcao1" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Intervalo de Confiança para uma Proporção" primeiro="p" segundo="1 - p" terceiro="Tamanho da amostra (n)" quarto="Grau de confiança" quinto="Erro de Proporção (Ep)" media={false}/>
-        : null
-      }
+        <AnimatePresence mode="wait">
+          {media1 && (
+            <motion.div
+              key="media1"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Intervalo
+                key="media1" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Intervalo de Confiança para uma Média" primeiro="Média" segundo="Desvio Padrão" terceiro="Tamanho da Amostra (n)" quarto="alfa (α)" quinto="Erro de Média (Em)" media={true}
+              />
+            </motion.div>
+          )}
+          {proporcao1 && (
+            <motion.div
+              key="proporcao1"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Intervalo
+                key="proporcao1" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Intervalo de Confiança para uma Proporção" primeiro="p" segundo="1 - p" terceiro="Tamanho da amostra (n)" quarto="Grau de confiança" quinto="Erro de Proporção (Ep)" media={false} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <div className="w-[0.1rem] h-svh bg-[#ecd0af]"></div>
       <div className="flex flex-col items-center gap-3 w-[45%] mt-3">
@@ -74,12 +96,35 @@ export default function Home() {
           <option value="proporcao">Proporção</option>
           <option value="media">Média</option>
         </select>
-        {proporcao2 ?
-        <Amostra key="media2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" media={true}/>
-        : media2 ?
-        <Amostra key="proporcao2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" media={false}/>
-        : null}
-        </div>
+        <AnimatePresence mode="wait">
+          {proporcao2 && (
+            <motion.div
+              key="proporcao2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Amostra
+                key="media2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" media={true}
+              />
+            </motion.div>
+          )}
+          {media2 && (
+            <motion.div
+              key="media2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Amostra
+                key="proporcao2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" media={false}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </section>
   )
 }

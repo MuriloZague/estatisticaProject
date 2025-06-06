@@ -59,7 +59,7 @@ export default function Intervalo(valores: IntervaloValor) {
   };
 
   return (
-    <section className="w-[90%] flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white mt-4">
+    <section className="flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white mt-4">
       <h1 className="text-[1.4rem] font-medium">{valores.title}</h1>
       <hr />
       <div className="flex flex-col gap-2 mt-2">

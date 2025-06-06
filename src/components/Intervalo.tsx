@@ -21,7 +21,6 @@ export interface IntervaloValor {
 
 export default function Intervalo(valores: IntervaloValor) {
 
-
   const setValores = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     setValor: React.Dispatch<React.SetStateAction<string>>

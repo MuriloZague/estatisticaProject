@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type SetStateAction, type Dispatch } from "react";
 
+//nao olhe diretamente para esse lugar
 interface AmostraValor {
   setPrimeiro: Dispatch<SetStateAction<string>>;
   setSegundo: Dispatch<SetStateAction<string>>;
@@ -43,7 +44,6 @@ export default function Erro(valores: AmostraValor) {
     let tamanhoAmostra = (z * desv / erro)**2;
     setResultadoMedia(Number(tamanhoAmostra.toFixed(2)));
   }
-
 
   const calculoAmostraProporcao = (zStr: string, pStr: string, erroStr: string) => {
     const z = parseFloat(zStr);

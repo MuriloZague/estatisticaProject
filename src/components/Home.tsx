@@ -11,17 +11,31 @@ export default function Home() {
   const [media2, setMedia2] = useState(false)
   const [proporcao2, setProporcao2] = useState(false)
 
+  // nao me pergunte o por que
   //ignorar nomes de variaveis, nao sou bom nisso (2)
   const [primeiroValor, setPrimeiroValor] = useState("");
   const [segundoValor, setSegundoValor] = useState("");
   const [terceiroValor, setTerceiroValor] = useState("");
   const [quartoValor, setQuartoValor] = useState("");
 
+  const [primeiroValor2, setPrimeiroValor2] = useState("");
+  const [segundoValor2, setSegundoValor2] = useState("");
+  const [terceiroValor2, setTerceiroValor2] = useState("");
+  const [quartoValor2, setQuartoValor2] = useState("");
+
   const limparInputs = () => {
     setPrimeiroValor("")
     setSegundoValor("")
     setTerceiroValor("")
     setQuartoValor("")
+  }
+
+  // eu finjo que nao percebo
+  const limparInputs2 = () => {
+    setPrimeiroValor2("")
+    setSegundoValor2("")
+    setTerceiroValor2("")
+    setQuartoValor2("")
   }
 
   return (
@@ -52,7 +66,7 @@ export default function Home() {
         <select onChange={e => {
           setMedia2(e.target.value === "media");
           setProporcao2(e.target.value === "proporcao");
-          limparInputs();
+          limparInputs2();
         }}
           className="border p-2 text-center rounded-3xl bg-[#fce5cb]"
         >
@@ -61,9 +75,9 @@ export default function Home() {
           <option value="media">Média</option>
         </select>
         {proporcao2 ?
-        <Amostra key="media2" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" media={true}/>
+        <Amostra key="media2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Proporção" primeiro="Grau de confiança (z)" segundo="p" terceiro="1 - p" quarto="erro (Ep)" media={true}/>
         : media2 ?
-        <Amostra key="proporcao2" setPrimeiro={setPrimeiroValor} setSegundo={setSegundoValor} setTerceiro={setTerceiroValor} setQuarto={setQuartoValor} primeiroValor={primeiroValor} segundoValor={segundoValor} terceiroValor={terceiroValor} quartoValor={quartoValor} title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" media={false}/>
+        <Amostra key="proporcao2" setPrimeiro={setPrimeiroValor2} setSegundo={setSegundoValor2} setTerceiro={setTerceiroValor2} setQuarto={setQuartoValor2} primeiroValor={primeiroValor2} segundoValor={segundoValor2} terceiroValor={terceiroValor2} quartoValor={quartoValor2} title="Calculadora de Tamanho de Amostra por Média" primeiro="Grau de confiança (z)" segundo="Desvio Padrão" terceiro="Erro (Em)" quarto="" media={false}/>
         : null}
         </div>
     </section>

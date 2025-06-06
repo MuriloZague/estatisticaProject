@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  font-size: 110%;
+}
+
 body {
   background-color: #faeee0; /* Bege claro */
 }

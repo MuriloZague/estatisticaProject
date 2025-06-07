@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <section className="flex flex-row justify-around">
-      <div className="flex flex-col items-center gap-3 w-[45%] mt-3">
+      <div className="flex flex-col items-center gap-3 w-[45%] mt-6">
         <h1 className="text-[2.5rem] font-medium text-center max-w-[65%]">Calculadora de Intervalo de Confiança</h1>
         <select onChange={e => {
           setMedia1(e.target.value === "media");
@@ -83,7 +83,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
       <div className="w-[0.1rem] h-svh bg-[#ecd0af]"></div>
-      <div className="flex flex-col items-center gap-3 w-[45%] mt-3">
+      <div className="flex flex-col items-center gap-3 w-[45%] mt-6">
         <h1 className="text-[2.5rem] font-medium text-center max-w-[65%]">Calculadora de Tamanho da Amostra</h1>
         <select onChange={e => {
           setMedia2(e.target.value === "media");

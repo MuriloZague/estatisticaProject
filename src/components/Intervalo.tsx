@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type SetStateAction, type Dispatch } from "react";
+import Modal from "react-modal";
 
 //ignorar nomes de variaveis, nao sou bom nisso
 export interface IntervaloValor {
@@ -32,13 +33,23 @@ export default function Intervalo(valores: IntervaloValor) {
   const [resultadoProporcao, setResultadoProporcao] = useState(0)
   const [resultadoMedia, setResultadoMedia] = useState(0)
 
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   const intervaloConfiancaProporcao = (umStr: string, doisStr: string, tresStr: string) => {
     const um = parseFloat(umStr);
     const dois = parseFloat(doisStr);
     const tres = parseFloat(tresStr);
 
     if (isNaN(um) || isNaN(dois) || isNaN(tres) || um <= 0 || um >= 1 || dois <= 0 || tres <= 0) {
-      alert('Preencha os campos corretamente!');
+      openModal()
       return;
     }
     const resultado = (tres * Math.sqrt((um * (1 - um)) / dois)).toFixed(2);
@@ -51,7 +62,7 @@ export default function Intervalo(valores: IntervaloValor) {
     const tres = parseFloat(tresStr);
 
     if (isNaN(um) || isNaN(dois) || isNaN(tres) || dois <= 0) { //algumas variavéis podem ser menores que 1. !! PERGUNTAR PARA A PROFESSORA SE PODEM SER MENORES OU IGUAIS A ZERO !!
-      alert('Preencha os campos corretamente!');
+      openModal();
       return;
     }
     const resultado = (tres * (um / Math.sqrt(dois))).toFixed(2);
@@ -62,6 +73,16 @@ export default function Intervalo(valores: IntervaloValor) {
     <section className="flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white mt-4">
       <h1 className="text-[1.4rem] font-medium">{valores.title}</h1>
       <hr />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <p className="text-2xl font-bold text-center mb-8">Preencha os campos corretamente!</p>
+        <button onClick={closeModal} className="bg-[#fce5cb] w-full rounded-xl p-3 hover:bg-[#ecd0af] transition-colors duration-200">Ok</button>
+      </Modal>
       <div className="flex flex-col gap-2 mt-2">
         <div className="flex justify-between items-center">
           <span className="text-lg">{valores.primeiro}</span>

@@ -1,4 +1,6 @@
 import { useState, type ChangeEvent, type SetStateAction, type Dispatch } from "react";
+import Modal from "react-modal";
+
 
 //nao olhe diretamente para esse lugar
 interface AmostraValor {
@@ -23,6 +25,16 @@ export default function Erro(valores: AmostraValor) {
   const [resultadoProporcao, setResultadoProporcao] = useState(0)
   const [resultadoMedia, setResultadoMedia] = useState(0)
 
+  const [modalIsOpen, setIsOpen] = useState(false)
+
+  const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   const setValores = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     setValor: React.Dispatch<React.SetStateAction<string>>
@@ -37,7 +49,7 @@ export default function Erro(valores: AmostraValor) {
     const erro = parseFloat(erroStr);
 
     if (isNaN(z) || isNaN(desv) || isNaN(erro)) {
-      alert('Preencha os campos corretamente!');
+      openModal()
       return;
     }
 
@@ -51,7 +63,7 @@ export default function Erro(valores: AmostraValor) {
     const erro = parseFloat(erroStr);
 
     if (isNaN(z) || isNaN(p) || isNaN(erro)) {
-      alert('Preencha os campos corretamente!');
+      openModal()
       return;
     }
 
@@ -63,6 +75,16 @@ export default function Erro(valores: AmostraValor) {
     <section className="flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white mt-4">
       <h1 className="text-[1.4rem] font-medium">{valores.title}</h1>
       <hr />
+      <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              contentLabel="Example Modal"
+              className="modal-content"
+              overlayClassName="modal-overlay"
+            >
+              <p className="text-2xl font-bold text-center mb-8">Preencha os campos corretamente!</p>
+              <button onClick={closeModal} className="bg-[#fce5cb] w-full rounded-xl p-3 hover:bg-[#ecd0af] transition-colors duration-200">Ok</button>
+            </Modal>
       <div className="flex flex-col gap-2 mt-2">
         <div className="flex justify-between items-center">
           <div className="w-1/2">

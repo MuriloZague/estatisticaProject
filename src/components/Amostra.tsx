@@ -114,7 +114,7 @@ export default function Erro(valores: AmostraValor) {
         <div className="flex justify-between items-center">
           <span className="text-lg">{valores.terceiro}</span>
           {valores.media ?
-            <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{valores.segundoValor ? (1 - parseFloat(valores.segundoValor)) : null}</span>
+            <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{valores.segundoValor ? (1 - parseFloat(valores.segundoValor)).toFixed(2) : null}</span>
             :
             <input
               type="text"

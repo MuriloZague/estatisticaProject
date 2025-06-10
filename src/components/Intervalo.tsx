@@ -104,7 +104,7 @@ export default function Intervalo(valores: IntervaloValor) {
           :
           <div className="flex justify-between items-center">
             <span className="text-lg">{valores.segundo}</span>
-            <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{valores.primeiroValor ? (1 - parseFloat(valores.primeiroValor)) : null}</span>
+            <span className="border-2 border-[#ddd] rounded-[0.3rem] w-1/2 h-[2.15rem] px-2 flex items-center">{valores.primeiroValor ? (1 - parseFloat(valores.primeiroValor)).toFixed(2) : null}</span>
           </div>
         }
         <div className="flex justify-between items-center">
@@ -147,7 +147,7 @@ export default function Intervalo(valores: IntervaloValor) {
         </div>
         <div className="flex justify-between items-center mb-3">
           <span className="text-lg">{valores.quinto}</span>
-          <span className="text-lg font-bold">{valores.media ? resultadoMedia == 0 ? null : resultadoMedia : resultadoProporcao == 0 ? null : resultadoProporcao}</span> {/* coisas grandes acontecendo aqui */}
+          <span className="text-lg font-bold">{valores.media ? resultadoMedia == 0 ? null : resultadoMedia.toFixed(2) : resultadoProporcao == 0 ? null : resultadoProporcao.toFixed(2)}</span> {/* coisas grandes acontecendo aqui */}
         </div>
         <div className="flex justify-between bg-[#fce5cb] p-3 rounded-[0.3rem]">
           <span className="text-lg">Intervalo de confiança</span>

@@ -125,7 +125,7 @@ export default function Erro(valores: AmostraValor) {
         </div>
         {valores.quarto !== ""
           ?
-          <div className="flex justify-between items-center mb-3">
+          <div className="flex justify-between items-center">
             <span className="text-lg">{valores.quarto}</span>
             <input
               type="text"
@@ -136,7 +136,7 @@ export default function Erro(valores: AmostraValor) {
           :
           null}
 
-        <div className="flex justify-between bg-[#fce5cb] p-3 rounded-[0.3rem]">
+        <div className="flex justify-between bg-[#fce5cb] p-3 rounded-[0.3rem] mt-3">
           <span className="text-lg">Tamanho da amostra (n)</span>
           <span className="text-lg">
             {!valores.media

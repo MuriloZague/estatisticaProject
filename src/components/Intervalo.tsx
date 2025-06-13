@@ -43,31 +43,36 @@ export default function Intervalo(valores: IntervaloValor) {
     setIsOpen(false);
   }
 
-  const intervaloConfiancaProporcao = (umStr: string, doisStr: string, tresStr: string) => {
-    const um = parseFloat(umStr);
-    const dois = parseFloat(doisStr);
-    const tres = parseFloat(tresStr);
+  const intervaloConfiancaProporcao = (pStr: string, nStr: string, zStr: string) => {
+  const p = parseFloat(pStr);
+  const n = parseFloat(nStr);
+  const z = parseFloat(zStr);
 
-    if (isNaN(um) || isNaN(dois) || isNaN(tres) || um <= 0 || um >= 1 || dois <= 0 || tres <= 0) {
-      openModal()
-      return;
-    }
-    const resultado = (tres * Math.sqrt((um * (1 - um)) / dois)).toFixed(2);
-    setResultadoProporcao(Number(resultado));
+  if (isNaN(p) || isNaN(n) || isNaN(z) || p <= 0 || p >= 1 || n <= 0 || z <= 0) {
+    openModal();
+    return;
   }
 
-  const intervaloConfiancaMedia = (umStr: string, doisStr: string, tresStr: string) => {
-    const um = parseFloat(umStr);
-    const dois = parseFloat(doisStr);
-    const tres = parseFloat(tresStr);
+  const erro = z * Math.sqrt((p * (1 - p)) / n);
+  const resultado = erro.toFixed(2);
+  setResultadoProporcao(Number(resultado));
+};
 
-    if (isNaN(um) || isNaN(dois) || isNaN(tres) || dois <= 0) { //algumas variavéis podem ser menores que 1. !! PERGUNTAR PARA A PROFESSORA SE PODEM SER MENORES OU IGUAIS A ZERO !!
-      openModal();
-      return;
-    }
-    const resultado = (tres * (um / Math.sqrt(dois))).toFixed(2);
-    setResultadoMedia(Number(resultado));
-  };
+
+  const intervaloConfiancaMedia = (dpStr: string, nStr: string, zStr: string) => {
+  const dp = parseFloat(dpStr);
+  const n = parseFloat(nStr);
+  const z = parseFloat(zStr);
+
+  if (isNaN(dp) || isNaN(n) || isNaN(z) || dp <= 0 || n <= 0 || z <= 0) {
+    openModal();
+    return;
+  }
+
+  const erro = z * (dp / Math.sqrt(n));
+  const resultado = erro.toFixed(2);
+  setResultadoMedia(Number(resultado));
+};
 
   return (
     <section className="flex flex-col gap-3 p-3 rounded-lg card border-2 border-[#ddddddb2] bg-white mt-4">
